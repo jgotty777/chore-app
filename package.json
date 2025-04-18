@@ -11,7 +11,8 @@
   "devDependencies": {
     "prettier": "^3.5.3",
     "turbo": "^2.5.0",
-    "typescript": "5.8.2"
+    "typescript": "5.8.2",
+    "@nestjs/schematics": "^11.0.4"
   },
   "engines": {
     "node": ">=18"
@@ -19,6 +20,11 @@
   "packageManager": "yarn@1.22.19",
   "workspaces": [
     "apps/*",
-    "packages/*"
-  ]
+    "packages/*",
+    "microservices/*",
+    "shared/**/*"
+  ],
+  "dependencies": {
+    "@nestjs/cli": "^11.0.6"
+  }
 }
