@@ -1,7 +1,7 @@
 {
-  "extends": "@repo/typescript-config/base.json",
+  "extends": "@repo/typescript-config/module.json",
+  "include": ["./src", "**/*.ts", "./src/types/**/*.ts"],
   "compilerOptions": {
-    "rootDir": "src",
     "module": "commonjs",
     "moduleResolution": "node",
     "declaration": true,
@@ -9,18 +9,20 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
-    "target": "ES2021",
+    "target": "es2022",
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./",
     "incremental": true,
     "skipLibCheck": true,
-    "strictNullChecks": true,
-    "forceConsistentCasingInFileNames": true,
+    "strictNullChecks": false,
     "noImplicitAny": false,
     "strictBindCallApply": false,
-    "noFallthroughCasesInSwitch": false
+    "forceConsistentCasingInFileNames": false,
+    "noFallthroughCasesInSwitch": false,
+    "resolveJsonModule": true,
+    "lib": ["dom"]
   },
-  "include": ["src", "**/*.ts"],
-  "exclude": ["node_modules", "dist"]
+
+  "exclude": ["dist", "build", "node_modules"]
 }
