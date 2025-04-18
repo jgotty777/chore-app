@@ -6,12 +6,12 @@
   },
   "exports": {
     "./add": {
-      "types": "./src/add.ts",
-      "default": "./dist/add.js"
+      "types": "./src/functions/add.ts",
+      "default": "./dist/functions/add.js"
     },
     "./subtract": {
-      "types": "./src/subtract.ts",
-      "default": "./dist/subtract.js"
+      "types": "./src/functions/subtract.ts",
+      "default": "./dist/functions/subtract.js"
     }
   },
   "devDependencies": {
