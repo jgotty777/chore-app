@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { add } from '@repo/shared-util/add';
+import { add } from '@repo/shared-core/functions';
 @Injectable()
 export class AppService {
   getHello(): string {

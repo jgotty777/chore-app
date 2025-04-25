@@ -1,5 +1,5 @@
 {
-  "name": "@repo/util",
+  "name": "@repo/shared-core",
   "scripts": {
     "dev": "tsc --watch",
     "build": "tsc"
@@ -8,12 +8,16 @@
   "types": "dist/index.d.ts",
   "exports": {
     ".": "./dist/index.js",
-    "./functions": "./dist/functions/index.js"
+    "./functions": "./dist/functions/index.js",
+    "./enum": "./dist/enum/index.js"
   },
   "typesVersions": {
     "*": {
       "functions": [
         "dist/functions/index.js"
+      ],
+      "enum": [
+        "dist/enum/index.js"
       ]
     }
   },
