@@ -1,39 +1,75 @@
 import js from "@eslint/js";
+import { FlatCompat } from "@eslint/eslintrc";
+import ts from "typescript-eslint";
 import eslintConfigPrettier from "eslint-config-prettier";
-import tseslint from "typescript-eslint";
-import pluginReactHooks from "eslint-plugin-react-hooks";
-import pluginReact from "eslint-plugin-react";
+import eslintPluginOnlyWarn from "eslint-plugin-only-warn";
+import path from "path";
+import { fileURLToPath } from "url";
 import globals from "globals";
-import { config as baseConfig } from "./base.js";
+import turboConfig from "eslint-config-turbo/flat";
+import sharedRules from "./shared-rules.js";
 
-/**
- * A custom ESLint configuration for libraries that use React.
- *
- * @type {import("eslint").Linter.Config[]} */
-export const config = [
-  ...baseConfig,
-  js.configs.recommended,
-  eslintConfigPrettier,
-  ...tseslint.configs.recommended,
-  pluginReact.configs.flat.recommended,
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const compat = new FlatCompat({
+  baseDirectory: __dirname,
+});
+
+export default ts.config(
+  {
+    ignores: [
+      // Ignore dotfiles
+      ".*.js",
+      "node_modules/",
+      "dist/",
+      "coverage/",
+      "jest.config.ts",
+      "setupFilesForTesting.ts",
+    ],
+  },
   {
     languageOptions: {
-      ...pluginReact.configs.flat.recommended.languageOptions,
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true,
+        },
+      },
       globals: {
-        ...globals.serviceworker,
         ...globals.browser,
       },
     },
   },
   {
     plugins: {
-      "react-hooks": pluginReactHooks,
-    },
-    settings: { react: { version: "detect" } },
-    rules: {
-      ...pluginReactHooks.configs.recommended.rules,
-      // React scope no longer necessary with new JSX transform.
-      "react/react-in-jsx-scope": "off",
+      ["only-warn"]: eslintPluginOnlyWarn,
     },
   },
-];
+  js.configs.recommended,
+  ...turboConfig,
+  ...ts.config({
+    files: ["**/*.js?(x)", "**/*.ts?(x)"],
+    extends: [...ts.configs.recommended],
+    languageOptions: {
+      parserOptions: {
+        project: ["./tsconfig.json"],
+        tsconfigRootDir: process.cwd(),
+      },
+    },
+    rules: {
+      "@typescript-eslint/no-unused-vars": "off",
+      "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/no-unused-expressions": "off",
+      "@typescript-eslint/no-empty-object-type": [
+        "error",
+        { allowInterfaces: "always" },
+      ],
+      "@typescript-eslint/no-require-imports": [
+        "error",
+        { allow: ["parse-address"] },
+      ],
+    },
+  }),
+  eslintConfigPrettier,
+  sharedRules
+);
