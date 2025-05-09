@@ -8,6 +8,7 @@ export class AppService {
     const test: number = add(num1, num2);
 
     console.log(test);
+    //add comment to test functionality
     return 'Hello World!';
   }
 }
