@@ -28,7 +28,7 @@ jobs:
         run: yarn run test
 
       - name: Install Playwright Browsers
-        run: yarn playwright install
+        run: yarn run playwright:install
       - name: Run Playwright tests
         run: yarn run playwright
       - uses: actions/upload-artifact@v4
