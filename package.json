@@ -9,7 +9,7 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types",
     "playwright": "turbo run playwright",
-    "playwright:install": "playwright install --with-deps"
+    "playwright:install": "playwright install chromium --with-deps && playwright install firefox --with-deps"
   },
   "devDependencies": {
     "@nestjs/schematics": "^11.0.4",
