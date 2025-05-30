@@ -1,0 +1,41 @@
+{
+  "editor.tabSize": 2,
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "always",
+    "source.organizeImports": "always",
+    "source.sortMembers": "always"
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "prettier.requireConfig": true,
+  "prettier.configPath": ".prettierrc.js",
+  "eslint.format.enable": true,
+  "npm.exclude": ["**/.next", "**/.next/**", "**/out", "**/out/**"],
+  "editor.formatOnPaste": true,
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "eslint.workingDirectories": [
+    {
+      "pattern": "./apps/*/",
+      "!cwd": true
+    },
+    {
+      "pattern": "./microservices/*/",
+      "!cwd": true
+    },
+    {
+      "pattern": "./shared/*/",
+      "!cwd": true
+    },
+    {
+      "pattern": "./turbo/*/",
+      "!cwd": true
+    }
+  ],
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "postman.settings.dotenv-detection-notification-visibility": false
+}
