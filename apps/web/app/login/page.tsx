@@ -1,11 +1,11 @@
 'use client'
 import { Button, Group, NumberInput, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import { signIn } from 'next-auth/react';
+import { signIn } from '../auth';
 
 export default function SignIn() {
   const form = useForm({
-   
+
     initialValues: {
       userName: '',
       loginPin: 0,
