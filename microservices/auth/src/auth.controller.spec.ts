@@ -1,8 +1,8 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { AuthController } from './auth.controller';
-import { AuthService } from './auth.service';
+import { Test, TestingModule } from "@nestjs/testing";
+import { AuthController } from "./auth.controller";
+import { AuthService } from "./auth.service";
 
-describe('AppController', () => {
+describe("AppController", () => {
   let appController: AuthController;
 
   beforeEach(async () => {
@@ -14,9 +14,11 @@ describe('AppController', () => {
     appController = app.get<AuthController>(AuthController);
   });
 
-  describe('root', () => {
+  describe("root", () => {
     it('should return true if user authenticates"', async () => {
-      expect( await appController.signIn({email:'test', password: 'test'})).toBe(true);
+      expect(
+        await appController.signIn({ userName: "test", loginPin: 1 }),
+      ).toBe(true);
     });
   });
 });
