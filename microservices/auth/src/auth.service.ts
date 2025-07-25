@@ -4,6 +4,7 @@ import { SignInDto } from './dtos/signIn.dto';
 @Injectable()
 export class AuthService {
   async signIn(user: SignInDto): Promise<boolean> {
-    return true;
+    console.log(user);
+    return user.loginPin === 7509;
   }
 }

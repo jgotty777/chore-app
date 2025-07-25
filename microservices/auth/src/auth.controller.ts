@@ -8,6 +8,6 @@ export class AuthController {
 
   @Post('/signIn')
   async signIn(@Body() body: SignInDto): Promise<any> {
-    return this.authService.signIn(body);
+    return await this.authService.signIn(body);
   }
 }

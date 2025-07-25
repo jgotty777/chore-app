@@ -11,10 +11,7 @@
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
-    "@repo/ui": "*",
-    "next": "^15.3.0",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
+    "@mantine/code-highlight": "7.15.2",
     "@mantine/core": "7.15.2",
     "@mantine/dates": "7.15.2",
     "@mantine/form": "7.15.2",
@@ -22,7 +19,10 @@
     "@mantine/modals": "7.15.2",
     "@mantine/notifications": "7.15.2",
     "@mantine/spotlight": "7.15.2",
-    "@mantine/code-highlight": "7.15.2"
+    "@repo/ui": "*",
+    "next": "^15.3.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
   },
   "devDependencies": {
     "@repo/eslint-config": "*",
@@ -31,9 +31,9 @@
     "@types/react": "19.1.0",
     "@types/react-dom": "19.1.1",
     "eslint": "^9.24.0",
-    "typescript": "5.8.2",
     "postcss": "^8.5.1",
     "postcss-preset-mantine": "^1.17.0",
-    "postcss-simple-vars": "^7.0.1"
+    "postcss-simple-vars": "^7.0.1",
+    "typescript": "5.8.2"
   }
 }

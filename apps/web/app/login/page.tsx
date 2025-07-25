@@ -1,54 +1,36 @@
-"use client";
-import { Button, Group, NumberInput, TextInput } from "@mantine/core";
-import { useForm } from "@mantine/form";
-import { useRouter, useSearchParams } from "next/navigation";
-import { Suspense } from "react";
-import { signIn } from "../auth";
+'use client';
+import { Button, Group, NumberInput, TextInput } from '@mantine/core';
+import { useForm } from '@mantine/form';
+import { Suspense } from 'react';
+import { handleLogin } from './functions/handleLogin';
 
-export default function SignIn() {
-  const searchParams = useSearchParams();
-  const router = useRouter();
-  const callbackUrl = searchParams.get("callbackUrl") || "/dashboard";
-
+function LoginComponent() {
   const form = useForm({
     initialValues: {
-      userName: "",
-      loginPin: 0,
-    },
+      userName: '',
+      loginPin: 0
+    }
   });
-
-  async function handleLogin(values: { userName: string; loginPin: number }) {
-    const results = await signIn("credentials", {
-      username: values.userName,
-      password: values.loginPin,
-
-      redirect: false,
-    });
-
-    router.push(callbackUrl || "/");
+  async function handleFrontEndLogin(values: { userName: string; loginPin: number }) {
+    const results = await handleLogin(values);
   }
   return (
-    <Suspense>
-      <form onSubmit={form.onSubmit((values) => handleLogin(values))}>
-        <TextInput
-          withAsterisk
-          label="User"
-          placeholder="Username"
-          key={form.key("email")}
-          {...form.getInputProps("email")}
-        />
+    <form onSubmit={form.onSubmit(values => handleFrontEndLogin(values))}>
+      <TextInput withAsterisk label="User" placeholder="Username" key={form.key('userName')} {...form.getInputProps('userName')} />
 
-        <NumberInput
-          mt="md"
-          label="Pin"
-          key={form.key("loginPin")}
-          {...form.getInputProps("loginPin")}
-        />
+      <NumberInput placeholder="0" mt="md" label="Pin" key={form.key('loginPin')} {...form.getInputProps('loginPin')} />
 
-        <Group justify="flex-end" mt="md">
-          <Button type="submit">Submit</Button>
-        </Group>
-      </form>
+      <Group justify="flex-end" mt="md">
+        <Button type="submit">Submit</Button>
+      </Group>
+    </form>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <LoginComponent />
     </Suspense>
   );
 }
