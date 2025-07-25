@@ -12,14 +12,22 @@ export const authConfig = {
     //   if (isLoggedIn) return true;
     //   return NextResponse.redirect('/login'); // Redirect unauthenticated users to login page
     // },
-    // session: async ({ session, token }) => {
-    //   if (token?.user) {
-    //     // Note that this if condition is needed
-    //     // @ts-expect-error need to type
-    //     session.user = token.user;
-    //   }
-    //   return session;
-    // }
+    async jwt({ token, user }) {
+      if (user) {
+        // If a user object is present (meaning a successful login/signup),
+        // attach the user data to the token.
+        token.user = user;
+      }
+      return token;
+    },
+    session: async ({ session, token }) => {
+      if (token?.user) {
+        // Note that this if condition is needed
+        // @ts-expect-error need to type
+        session.user = token.user;
+      }
+      return session;
+    }
   },
   providers: [] // Add providers with an empty array for now
 } satisfies NextAuthConfig;
