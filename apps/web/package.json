@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint . --max-warnings 0 --fix",
-    "playwright": "playwright test",
+    "playwright": "npx playwright test",
+    "playwright-ui": "npx playwright test --ui",
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
